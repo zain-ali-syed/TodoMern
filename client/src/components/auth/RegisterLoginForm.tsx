@@ -11,7 +11,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function RegisterForm() {
+function RegisterLoginForm() {
   const {
     register,
     handleSubmit,
@@ -119,4 +119,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default RegisterLoginForm;
