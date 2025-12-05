@@ -1,0 +1,37 @@
+# --- Node ---
+node_modules/
+**/node_modules/
+
+# --- Build outputs ---
+dist/
+build/
+**/dist/
+**/build/
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Environment files ---
+.env
+*.env
+.env.local
+.env.*.local
+
+# --- OS / Editor junk ---
+.DS_Store
+Thumbs.db
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+
+# --- Optional: TypeScript ---
+*.tsbuildinfo
+
+# --- Optional: Production bundles ---
+*.tgz
