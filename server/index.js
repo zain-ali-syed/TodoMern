@@ -9,10 +9,10 @@ const { requireAuth } = require("./middleware/auth");
 var cors = require("cors");
 
 require("dotenv").config();
-// For development (simple and explicit)
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your Vite/React dev server
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
