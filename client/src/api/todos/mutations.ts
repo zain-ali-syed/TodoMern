@@ -32,3 +32,13 @@ export const completeTodo = async (id: string) => {
   if (!response.ok) throw new Error("Error completing todo");
   return response.json();
 };
+
+export const deleteTodo = async (id: string) => {
+  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include", // Include cookies in the request
+  });
+  if (!response.ok) throw new Error("Error deleting todo");
+  return response.json();
+};

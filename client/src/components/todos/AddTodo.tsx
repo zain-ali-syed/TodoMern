@@ -29,7 +29,6 @@ const AddTodo = () => {
 
   const submitForm = async (data: todoSchemaT) => {
     await mutateAsync(data);
-    console.log("mutated man");
   };
 
   return (
@@ -61,7 +60,7 @@ const AddTodo = () => {
               )}
             </div>
             <div className="flex-col gap-2">
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} className="cursor-pointer">
                 Add Todo
               </Button>
             </div>

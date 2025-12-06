@@ -37,7 +37,9 @@ const Header = () => {
             {user && (
               <div className="flex gap-4 items-center">
                 <p className="text-white">User: {user?.email}</p>
-                <Button onClick={() => handleLogout()}>Logout</Button>
+                <Button onClick={() => handleLogout()} className="cursor-pointer">
+                  Logout
+                </Button>
               </div>
             )}
           </div>

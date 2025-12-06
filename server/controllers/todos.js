@@ -2,7 +2,6 @@ const TodoModel = require("../models/todos");
 const HTTP = require("../utils/httpStatusCodes");
 
 const getTodos = async (req, res) => {
-  console.log("user is ", req.user.id);
   try {
     const todos = await TodoModel.find({ user: req.user.id });
     res.status(HTTP.OK.code).json(todos);
@@ -46,12 +45,12 @@ const deleteTodo = async (req, res) => {
       });
     }
 
-    res.status(HTTP.OK.code).json({ success: true, message: "Todo deleted" });
+    res.status(HTTP.OK.code).json({ success: true, message: "Task deleted" });
   } catch (err) {
     res.status(HTTP.SERVER_ERROR.code).json({
       success: false,
       message: "Failed to delete todo",
-      error: err.message, // optional
+      error: err.message,
     });
   }
 };
@@ -73,7 +72,7 @@ const completeTodo = async (req, res) => {
 
     res.status(HTTP.OK.code).json({
       success: true,
-      message: "Todo marked as completed",
+      message: "Task completed",
       todo: updatedTodo,
     });
   } catch (err) {

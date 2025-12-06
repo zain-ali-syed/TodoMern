@@ -1,12 +1,11 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const connectDB = require("./db");
 const todoRoutes = require("./routes/todos");
 const userRoutes = require("./routes/users");
 const cookieParser = require("cookie-parser");
 const { requireAuth } = require("./middleware/auth");
-var cors = require("cors");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -28,6 +27,7 @@ app.use("/users", userRoutes);
 app.use("/todos", requireAuth, todoRoutes);
 
 async function startServer() {
+  const port = process.env.PORT || 3000;
   await connectDB();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

@@ -11,23 +11,41 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Trash } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { completeTodo } from "@/api/todos/mutations";
+import { completeTodo, deleteTodo } from "@/api/todos/mutations";
 import { type Todo } from "@/api/todos/types";
+import { toast } from "sonner";
 
 const TodoItem = ({ id, title, description, completed }: Todo) => {
-  //   const [isCompleted, setIsCompleted] = useState(completed);
   const queryClient = useQueryClient();
 
-  const { mutateAsync } = useMutation({
+  const completeFn = useMutation({
     mutationFn: () => completeTodo(id),
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
+      toast.success(data.message, {
+        position: "top-center",
+      });
+    },
+    onError: (err) => console.log("some error ", err.message),
+  });
+
+  const deleteFn = useMutation({
+    mutationFn: () => deleteTodo(id),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      toast.success(data.message, {
+        position: "top-center",
+      });
     },
     onError: (err) => console.log("some error ", err.message),
   });
 
   const handleToggle = () => {
-    mutateAsync();
+    completeFn.mutateAsync();
+  };
+
+  const handleDelete = () => {
+    deleteFn.mutateAsync();
   };
 
   return (
@@ -35,7 +53,7 @@ const TodoItem = ({ id, title, description, completed }: Todo) => {
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardAction>
-          <Trash size={16} strokeWidth={1.75} />
+          <Trash size={16} strokeWidth={1.75} onClick={handleDelete} className="cursor-pointer" />
         </CardAction>
       </CardHeader>
       <CardContent>
