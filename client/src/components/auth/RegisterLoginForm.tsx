@@ -82,7 +82,7 @@ function RegisterLoginForm() {
               )}
             </div>
             <div className="flex-col gap-2">
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} className="cursor-pointer">
                 {registrationForm ? "Register" : "Login"}
               </Button>
             </div>
@@ -95,7 +95,7 @@ function RegisterLoginForm() {
             <p>Already have an account?</p>
             <a
               href="#"
-              className="text-blue-800 font-bold"
+              className="text-blue-800 font-bold "
               onClick={() => setRegistrationForm(false)}
             >
               Login here
