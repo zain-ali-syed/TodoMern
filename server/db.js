@@ -1,7 +1,11 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 
-const databaseName = "TodoDB";
-const dbURI = `mongodb+srv://chelnov63:3wM7Uz0e1usB8QLy@cluster0.nfe5cu1.mongodb.net/${databaseName}`;
+const dbName = process.env.MONGO_DB;
+const dbUsername = process.env.MONGO_USER;
+const dbPassword = process.env.MONGO_PASSWORD;
+
+const dbURI = `mongodb+srv://${dbUsername}:${dbPassword}@cluster0.nfe5cu1.mongodb.net/${dbName}`;
 
 async function connectDB() {
   try {
