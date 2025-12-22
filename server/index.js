@@ -11,7 +11,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     credentials: true,
   })
 );
@@ -27,7 +27,7 @@ app.use("/users", userRoutes);
 app.use("/todos", requireAuth, todoRoutes);
 
 async function startServer() {
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT_INTERNAL || 5000; // internal port for Nginx proxy
   await connectDB();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

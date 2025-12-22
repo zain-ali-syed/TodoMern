@@ -4,7 +4,7 @@ type User = {
 };
 
 export const registerUser = async (user: User) => {
-  const response = await fetch("http://localhost:3000/users/register", {
+  const response = await fetch("http://localhost:5000/users/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Include cookies in the request
@@ -24,7 +24,7 @@ export const registerUser = async (user: User) => {
 };
 
 export const loginUser = async (user: User) => {
-  const response = await fetch("http://localhost:3000/users/login", {
+  const response = await fetch("http://localhost:5000/users/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Include cookies in the request
