@@ -1,32 +1,16 @@
-# Build React
-FROM node:25-alpine3.22 AS builder
-WORKDIR /app/client
-COPY client/package*.json ./
-RUN npm install
-COPY client/ ./
-RUN npm run build
+FROM node:20-alpine
 
-# Final container
-FROM node:25-alpine3.22
-WORKDIR /app/server
+WORKDIR /app
 
-ENV PORT_INTERNAL=5000
+# Install dependencies
+COPY package*.json ./
+RUN npm install --production
 
-# Copy React build
-COPY --from=builder /app/client/build /usr/share/nginx/html
+# Copy source
+COPY . .
 
-# Install backend dependencies
-COPY server/package*.json ./
-RUN npm install
-COPY server/ ./
+# Expose Express port
+EXPOSE 3000
 
-# Install Nginx
-RUN apk add --no-cache nginx
-
-# Copy Nginx config
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 8080
-
-# Run Express and Nginx together in a single CMD
-CMD node server/index.js & exec nginx -g 'daemon off;'
+# Start server
+CMD ["node", "index.js"]

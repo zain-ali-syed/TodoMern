@@ -1,10 +1,11 @@
+import { BASE_URL } from "../constants";
 type User = {
   email: string;
   password: string;
 };
 
 export const registerUser = async (user: User) => {
-  const response = await fetch("http://localhost:5000/users/register", {
+  const response = await fetch(`${BASE_URL}/users/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Include cookies in the request
@@ -24,7 +25,7 @@ export const registerUser = async (user: User) => {
 };
 
 export const loginUser = async (user: User) => {
-  const response = await fetch("http://localhost:5000/users/login", {
+  const response = await fetch(`${BASE_URL}/users/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Include cookies in the request

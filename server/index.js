@@ -20,6 +20,15 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    service: "todo-server",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 //Public User Routes
 app.use("/users", userRoutes);
 
@@ -27,7 +36,7 @@ app.use("/users", userRoutes);
 app.use("/todos", requireAuth, todoRoutes);
 
 async function startServer() {
-  const port = process.env.PORT_INTERNAL || 5000; // internal port for Nginx proxy
+  const port = 3000;
   await connectDB();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

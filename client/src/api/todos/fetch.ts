@@ -1,3 +1,4 @@
+import { BASE_URL } from "../constants";
 import type { Todo } from "./types";
 
 type TodoResponse = {
@@ -9,7 +10,7 @@ type TodoResponse = {
 };
 
 export const fetchTodos = async (): Promise<Todo[]> => {
-  const response = await fetch("http://localhost:5000/todos", {
+  const response = await fetch(`${BASE_URL}/todos`, {
     credentials: "include", // <-- THIS sends your cookie (JWT, session, etc.)
   });
   if (!response.ok) throw new Error("Failed to fetch todos");

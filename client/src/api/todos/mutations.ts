@@ -1,10 +1,12 @@
+import { BASE_URL } from "../constants";
+
 type Todo = {
   title: string;
   description: string;
 };
 
 export const addTodo = async (todo: Todo) => {
-  const response = await fetch("http://localhost:5000/todos", {
+  const response = await fetch(`${BASE_URL}/todos`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -24,7 +26,7 @@ export const addTodo = async (todo: Todo) => {
 };
 
 export const completeTodo = async (id: string) => {
-  const response = await fetch(`http://localhost:5000/todos/${id}/complete`, {
+  const response = await fetch(`${BASE_URL}/todos/${id}/complete`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Include cookies in the request
@@ -34,7 +36,7 @@ export const completeTodo = async (id: string) => {
 };
 
 export const deleteTodo = async (id: string) => {
-  const response = await fetch(`http://localhost:5000/todos/${id}`, {
+  const response = await fetch(`${BASE_URL}/todos/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Include cookies in the request
