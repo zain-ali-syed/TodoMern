@@ -11,7 +11,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:8080", // your React dev server or FE container
     credentials: true,
   })
 );
