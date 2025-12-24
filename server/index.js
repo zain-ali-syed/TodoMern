@@ -31,7 +31,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/todos", requireAuth, todoRoutes);
 
 async function startServer() {
-  const port = 8080;
+  const port = process.env.PORT || 3000;
   await connectDB();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
