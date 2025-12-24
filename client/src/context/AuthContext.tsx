@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect, type ReactNode, useContext } from "react";
+import { BASE_URL } from "@/api/constants";
 
 // Define types
 type User = {
@@ -27,7 +28,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const logout = async () => {
-    await fetch("http://localhost:3000/users/logout", {
+    await fetch(`${BASE_URL}/users/logout`, {
       method: "POST",
       credentials: "include",
     });
@@ -37,7 +38,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("http://localhost:3000/users/check", {
+      const response = await fetch(`${BASE_URL}/users/check`, {
         credentials: "include",
       });
       const data = await response.json();

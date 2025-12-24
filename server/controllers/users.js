@@ -64,6 +64,7 @@ const registerUser = async (req, res) => {
         },
       });
   } catch (err) {
+    console.log("err ", err);
     res.status(HTTP.SERVER_ERROR.code).json({ success: false, message: "Failed to register user" });
   }
 };

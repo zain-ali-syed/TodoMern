@@ -4,6 +4,11 @@ services:
   todo-server:
     build: ./server
     container_name: todo-server
+    environment:
+      MONGO_DB: ${MONGO_DB}
+      MONGO_USER: ${MONGO_USER}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
     ports:
       - "3000:3000"
 
