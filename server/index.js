@@ -19,6 +19,11 @@ app.use(
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 //Public User Routes
 app.use("/api/users", userRoutes);
 
