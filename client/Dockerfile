@@ -24,10 +24,9 @@
     
     # Copy and process Nginx config template
     COPY nginx/default.conf /etc/nginx/conf.d/default.conf.template
-    RUN envsubst '\$PORT \$API_URL' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf \
-        && rm /etc/nginx/conf.d/default.conf.template
+ 
     
     # Cloud Run will inject PORT environment variable
     EXPOSE 8080
     
-    CMD ["nginx", "-g", "daemon off;"]
+    CMD ["/bin/sh", "-c", "envsubst '\\$PORT \\$API_URL' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
