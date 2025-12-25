@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\""
+    "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+    "build:server-image": "docker build -t thinkinginreact/todo_server:latest ./server",
+    "build:client-image": "docker build -t thinkinginreact/todo_app:latest ./client",
+    "build:images": "npm run build:server-image && npm run build:client-image",
+    "push:images": "docker push thinkinginreact/todo_server:latest && docker push thinkinginreact/todo_app:latest",
+    "build:push": "npm run build:server-image && npm run build:client-image && npm run push:images"
   },
   "author": "",
   "license": "ISC",
