@@ -1,6 +1,6 @@
 server {
     # Dynamic port provided by Railway
-    listen ${PORT};
+    listen 8080;
 
     # Serve React build
     root /usr/share/nginx/html;
