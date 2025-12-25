@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   todo-server:
-    image: thinkinginreact/todo_server:v1.0.0
+    image: thinkinginreact/todo_server:latest
     container_name: todo-server
     environment:
       MONGO_DB: ${MONGO_DB}
@@ -13,8 +13,11 @@ services:
       - "3000:3000"
 
   todo-client:
-    image: thinkinginreact/todo_app:v1.0.0
+    image: thinkinginreact/todo_app:latest
     container_name: todo-client
+    environment:
+      PORT: 8080
+      API_URL: http://todo-server:3000
     ports:
       - "8080:8080"
     depends_on:
