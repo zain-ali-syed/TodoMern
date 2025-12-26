@@ -10,7 +10,7 @@ services:
       MONGO_PASSWORD: ${MONGO_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
     ports:
-      - "3000:3000"
+      - "3000:8080"
 
   todo-client:
     image: thinkinginreact/todo_app:latest

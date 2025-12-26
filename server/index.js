@@ -11,7 +11,9 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173", // your React dev server or FE container
+    origin: [process.env.CLIENT_URL, "http://localhost:5173", "http://localhost:8080"].filter(
+      Boolean
+    ), // remove undefined
     credentials: true,
   })
 );
