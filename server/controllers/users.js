@@ -1,8 +1,7 @@
-const { signJWT, TOKEN_EXPIRES_MS, verifyJWT } = require("../auth/jwt");
+const { signJWT, TOKEN_EXPIRES_MS } = require("../auth/jwt");
 const { validateTokenAndGetUser } = require("../auth/validateTokenAndGetUser");
 const UserModel = require("../models/users");
 const { encryptPassword, comparePasswords } = require("../utils/encrypt");
-const httpStatusCodes = require("../utils/httpStatusCodes");
 const HTTP = require("../utils/httpStatusCodes");
 
 //check auth when user lands on site we need to check he is logged in
