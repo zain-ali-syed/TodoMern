@@ -10,7 +10,7 @@ RUN npm install --production
 COPY . .
 
 # Expose Express port
-EXPOSE 3000
+EXPOSE 8080
 
 # Start server
 CMD ["node", "index.js"]

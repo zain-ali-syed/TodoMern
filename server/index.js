@@ -11,7 +11,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:8080", // your React dev server or FE container
+    origin: "https://todoappv2-757973689656.europe-west1.run.app/", // your React dev server or FE container
     credentials: true,
   })
 );
@@ -31,7 +31,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/todos", requireAuth, todoRoutes);
 
 async function startServer() {
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 8080;
   await connectDB();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
