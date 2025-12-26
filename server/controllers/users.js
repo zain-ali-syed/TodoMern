@@ -52,7 +52,7 @@ const registerUser = async (req, res) => {
       .cookie("token", token, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "none",
         maxAge: TOKEN_EXPIRES_MS,
       })
       .json({
@@ -116,7 +116,7 @@ const logoutUser = (req, res) => {
     .clearCookie("token", {
       httpOnly: true,
       secure: "lax", // Should be true in production
-      sameSite: "strict",
+      sameSite: "none",
     })
     .json({
       success: true,
