@@ -1,1 +1,1 @@
-export const BASE_URL = "/api";
+export const BASE_URL = `https://todo-server-757973689656.europe-west1.run.app/api`;
