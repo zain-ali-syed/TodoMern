@@ -10,23 +10,21 @@
     
     RUN npm run build
     
+    
     # ---- Runtime stage ----
     FROM nginx:alpine
-    
-    # Install gettext (contains envsubst)
-    RUN apk add --no-cache gettext
     
     # REMOVE all default configs (important)
     RUN rm -rf /etc/nginx/conf.d/*
     
+    # Copy our config
+    COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+    
     # Copy built app
     COPY --from=build /app/dist /usr/share/nginx/html
     
-    # Copy and process Nginx config template
-    COPY nginx/default.conf /etc/nginx/conf.d/default.conf.template
- 
-    
-    # Cloud Run will inject PORT environment variable
+    # Cloud Run port
     EXPOSE 8080
     
-    CMD ["/bin/sh", "-c", "envsubst '\\$PORT \\$API_URL' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+    CMD ["nginx", "-g", "daemon off;"]
+    
