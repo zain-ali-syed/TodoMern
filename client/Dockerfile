@@ -25,6 +25,10 @@
     
     # Cloud Run port
     EXPOSE 8080
+
+    COPY env.sh /docker-entrypoint.d/env.sh
+    RUN chmod +x /docker-entrypoint.d/env.sh
     
+    # Start nginx (env.sh runs automatically from /docker-entrypoint.d/ before this)
     CMD ["nginx", "-g", "daemon off;"]
     
