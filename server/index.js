@@ -11,7 +11,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "https://todoappv2-757973689656.europe-west1.run.app", // your React dev server or FE container
+    origin: process.env.CLIENT_URL, // your React dev server or FE container
     credentials: true,
   })
 );
