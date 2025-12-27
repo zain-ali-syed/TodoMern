@@ -15,4 +15,13 @@
 
 // In development mode (Vite dev server), use localhost
 // In production builds, env.sh will replace ${APP_API_URL} at runtime in the built JS files
-export const BASE_URL = import.meta.env.VITE_API_URL;
+// export const BASE_URL = import.meta.env.DEV
+//   ? `http://localhost:8080/api` // Local development - adjust port if your server uses a different one
+export const BASE_URL = import.meta.env.DEV
+  ? import.meta.env.VITE_API_URL // Local development - adjust as needed
+  : "${APP_API_URL}"; // Production - env.sh replaces this placeholder at container startup
+
+//Note when we run docker compose the react image has already been built and so it's not considered DEV
+console.log("import.meta.env.DEV ----->", import.meta.env.DEV);
+console.log("import.meta.env.VITE_API_URL ---->", import.meta.env.VITE_API_URL);
+console.log("APP_API_URL ---->", "${APP_API_URL}");
