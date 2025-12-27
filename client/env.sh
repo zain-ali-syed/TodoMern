@@ -1,14 +1,11 @@
 #!/bin/sh
-for i in $(env | grep APP_)
-do
-    key=$(echo $i | cut -d '=' -f 1)
-    value=$(echo $i | cut -d '=' -f 2-)
-    echo $key=$value
-    # sed All files
-    # find /usr/share/nginx/html -type f -exec sed -i "s|${key}|${value}|g" '{}' +
+echo "Replacing environment variables in config.js"
 
-    # sed JS and CSS only
-    # Replace ${APP_VARIABLE_NAME} with the actual value (escape $ in pattern)
-    find /usr/share/nginx/html -type f \( -name '*.js' -o -name '*.css' \) -exec sed -i "s|\${${key}}|${value}|g" '{}' +
-done
-echo 'done'
+# Export all APP_ variables for envsubst
+export $(env | grep APP_ | cut -d= -f1)
+
+# Replace placeholders in config.js
+envsubst < /usr/share/nginx/html/config.js > /usr/share/nginx/html/config.js.tmp
+mv /usr/share/nginx/html/config.js.tmp /usr/share/nginx/html/config.js
+
+echo "Environment variables injected successfully"
