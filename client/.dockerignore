@@ -2,4 +2,3 @@ node_modulesnode_modules
 dist
 build
 .git
-.env
